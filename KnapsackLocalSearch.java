@@ -11,15 +11,16 @@ class KnapsackLocalSearch {
     static int size = 32;
     static int W_max = 75;
 
-    final static int ITER_LIMIT = 100000;
+    final static int ITER_LIMIT = 200000;
 
     public static void main(String[] args) {
         BigInteger best = new BigInteger("0");
         for (int i = 0; i < ITER_LIMIT; i++) {
-            BigInteger iterResult = iteration();
-            System.out.println("Iteration " + i);
+            BigInteger iterResult = iteration(i + 1);
             if (best.compareTo(iterResult) < 0) {
                 best = iterResult;
+                System.out.println("Iteration " + i);
+                System.out.println(best.toString(2));
             }
         }
         System.out.println("\n\n\n\n\n\n" + "*".repeat(16) + "| FINAL RESULT |" + "*".repeat(16) + "\n");
@@ -34,10 +35,10 @@ class KnapsackLocalSearch {
         System.out.println("\n" + "*".repeat(16 * 3) + "\n\n\n\n\n\n");
     }
 
-    public static BigInteger iteration() {
+    public static BigInteger iteration(int iterId) {
 
         BigInteger randomStartingPoint = new BigInteger("2").pow(size).subtract(new BigInteger("1"))
-                .divide(new BigInteger(String.valueOf((int) ((Math.random() + 1) * 123654))));
+                .divide(new BigInteger(String.valueOf((int) ((Math.random() + 1) * 10 * iterId))));
 
         BigInteger currentBest = randomStartingPoint;
         int bestVal = 0;
@@ -70,9 +71,6 @@ class KnapsackLocalSearch {
                 break;
             }
         }
-        System.out.println("\n\n\n");
-        System.out.println(bestVal);
-        System.out.println(currentBest.toString(2));
         return currentBest;
     }
 }
