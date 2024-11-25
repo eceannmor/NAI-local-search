@@ -23,7 +23,8 @@ class KnapsackLocalSearch {
                 System.out.println(best.toString(2));
             }
         }
-        System.out.println("\n\n\n\n\n\n" + "*".repeat(16) + "| FINAL RESULT |" + "*".repeat(16) + "\n");
+        System.out.println("\n\n\n\n\n\n" + "*".repeat(16) + "| FINAL RESULT |" +
+                        "*".repeat(16) + "\n");
         int sumVal = 0;
         for (int j = 0; j < 32; j++) {
             if (best.testBit(j)) {
